@@ -7,10 +7,11 @@ var server = require('webserver').create();
 var service = server.listen(ip_server, function(request, response) {
 
     var url = getParameterByName('url', request.url);
-    console.log(url);
     url = 'http://' + url;
-    console.log(url);
-    var casper = require('casper').create();
+
+    var casper = require('casper').create({
+        // clientScripts: ["includes/jquery.min.js"],
+    });
 
     casper.start(url, function() {
     });
@@ -19,8 +20,11 @@ var service = server.listen(ip_server, function(request, response) {
     });
 
     casper.run(function() {
+        var html = this.getHTML();
+        html += '<script type="text/javascript" src="http://www.lvxingpai.com/javascripts/lib/jquery-1.11.1.min.js"></script>'
+        html += '<script type="text/javascript" src="http://localhost/js/apollo.js"></script>'
         response.statusCode = 200;
-        response.write(this.getHTML());
+        response.write(html);
         response.close();
     });
 
