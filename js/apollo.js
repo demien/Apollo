@@ -10,7 +10,7 @@
     document.onmouseover = function (e) {
         var event = e || window.event;
         var target = event.target || event.srcElement;
-        document.getElementById('display').innerHTML = csspath(target);
+        document.getElementById('display').innerHTML = csspath_without_id(target);
 
         if (lastelem) {
             lastelem.style.background = bg_color;
@@ -49,7 +49,21 @@
     };
 
 
-    function csspath(el){
+    function csspath_without_id(el){
+        var names = [];
+        while (el.parentNode){
+            if (el==el.ownerDocument.documentElement)
+                names.unshift(el.tagName);
+            else{
+                for (var c=1,e=el;e.previousElementSibling;e=e.previousElementSibling,c++);
+                names.unshift(el.tagName+":nth-child("+c+")");
+            }
+            el=el.parentNode;
+        }
+        return names.join(" > ");
+    };
+
+    function csspath_with_id(el){
         var names = [];
         while (el.parentNode){
             if (el.id){

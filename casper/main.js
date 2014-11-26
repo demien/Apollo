@@ -7,7 +7,6 @@ var server = require('webserver').create();
 var service = server.listen(ip_server, function(request, response) {
 
     var url = getParameterByName('url', request.url);
-    url = 'http://' + url;
 
     var casper = require('casper').create({
         // clientScripts: ["includes/jquery.min.js"],
