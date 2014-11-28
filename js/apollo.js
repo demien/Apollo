@@ -20,7 +20,6 @@
         lastelem = target;
     };
 
-
     function xpath(elm) { 
         var allNodes = document.getElementsByTagName('*'); 
         for (var segs = []; elm && elm.nodeType == 1; elm = elm.parentNode) 
