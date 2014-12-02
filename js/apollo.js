@@ -4,10 +4,12 @@
         'http://code.jquery.com/jquery-2.1.0.min.js',
         'js/tpl.js',
         'js/page_util.js',
+        'js/config.js',
     ];
     js_fils.map(function(url){loadScript(url, main, counter())});
     
     function main(){
+        alert(JSON.stringify(config()));
         var html = tpl.top_control_panel;
         $('body').css('padding-top', '50px');
         $('body').append(html);
@@ -18,7 +20,7 @@
         document.onmouseover = function (e) {
             var event = e || window.event;
             var target = event.target || event.srcElement;
-            document.getElementById('display').innerHTML = page_util.csspath_without_id(target);
+            document.getElementById('display').innerHTML = page_util.csspath_with_id(target);
 
             if (lastelem) {
                 lastelem.style.background = bg_color;
