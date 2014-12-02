@@ -1,3 +1,3 @@
-#display: {
-    top: 0; left: 0; position: fixed; width: 100%; height: 45px; background-color: #3399FF;padding: 10px;display: inline-table;z-index: 2147483500;box-sizing: border-box;line-height: 28px;font-weight:bold
+#display {
+    top: 0; left: 0; position: fixed; width: 100%; height: 45px; background-color: #3399FF;padding: 10px;display: inline-table; z-index: 2147483500;box-sizing: border-box;line-height: 28px;font-weight:bold
 };

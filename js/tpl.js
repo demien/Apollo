@@ -1,3 +1,6 @@
 var tpl = {
-    top_control_panel: '<div id="display"> control panel </div>',
+    top_control_panel: ' \
+        <div id="display"> \
+            control panel \
+        </div>',
 };

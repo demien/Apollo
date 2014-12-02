@@ -20,8 +20,8 @@ var service = server.listen(ip_server, function(request, response) {
 
     casper.run(function() {
         var html = this.getHTML();
-        html += '<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.0.min.js"></script>'
-        html += '<script type="text/javascript" src="http://localhost/js/apollo.js"></script>'
+        html += '<link rel="stylesheet" href="http://localhost/css/load.css" type="text/css" >';
+        html += '<script type="text/javascript" src="http://localhost/js/apollo.js"></script>';
         response.statusCode = 200;
         response.write(html);
         response.close();
