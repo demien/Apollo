@@ -1,10 +1,9 @@
 (function(){
 
     var js_fils = [
-        'http://underscorejs.org/underscore-min.js',
+        'http://code.jquery.com/jquery-2.1.0.min.js',
         'js/tpl.js',
         'js/page_util.js',
-        'js/mustache.js',
     ];
     js_fils.map(function(url){loadScript(url, main, counter())});
     
