@@ -13,7 +13,7 @@
 
     function load(url) {
         script = document.createElement('script');
-        script.async = true;
+        script.defer = true;
         script.src = url;
         scripts.parentNode.insertBefore(script, scripts);
     }
