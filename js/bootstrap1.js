@@ -2,9 +2,10 @@
     var html = tpl.top_control_panel;
     $('body').css('padding-top', '50px');
     $('body').append(html);
-    alert(JSON.stringify(config()));
+    // alert(JSON.stringify(config()));
     var lastelem;
     var bg_color;
+    angular.bootstrap(document,["phonecatApp"]);
 
     document.onmouseover = function (e) {
         var event = e || window.event;
