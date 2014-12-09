@@ -9,6 +9,7 @@ var config = function(){
     }
 
     var dom = {}
+
     scrape_css = function(css, re){
         var elements = $.find(css);
         return elements.map(function(element){return new RegExp(re).exec(element.innerText);});  
