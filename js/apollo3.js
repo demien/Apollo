@@ -3,6 +3,8 @@
     scripts = document.getElementsByTagName('script')[0];
 
     var js_fils = [
+        'js/lib/angular.js',
+        'js/angular_controller.js',
         'js/lib/jquery-2.1.0.min.js',
         'js/page_util.js',
         'js/tpl.js',
