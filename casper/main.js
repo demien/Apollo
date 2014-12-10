@@ -21,7 +21,7 @@ var service = server.listen(ip_server, function(request, response) {
     casper.run(function() {
         var html = this.getHTML();
         html += '<link rel="stylesheet" href="http://localhost/css/load.css" type="text/css" >';
-        html += '<script type="text/javascript" src="http://localhost/js/apollo3.js"></script>';
+        html += '<script type="text/javascript" src="http://localhost/js/apollo_onload.js"></script>';
         response.statusCode = 200;
         response.write(html);
         response.close();
