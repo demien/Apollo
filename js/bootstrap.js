@@ -3,7 +3,7 @@
     $('body').css('padding-top', '50px');
     $('body').append(html);
 
-    alert(JSON.stringify(config()));
+    // alert(JSON.stringify(config()));
     
     // start angular
     angular.bootstrap(document,["phonecatApp"]); 
