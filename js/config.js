@@ -8,8 +8,6 @@ var config = function(){
         },
     }
 
-    var dom = {}
-
     scrape_css = function(css, re){
         var elements = $.find(css);
         return elements.map(function(element){return new RegExp(re).exec(element.innerText);});  
@@ -36,14 +34,23 @@ var config = function(){
         return result;
     };
 
-    for(collection_name in config_css){
-        collection = config_css[collection_name];
-        var collection_result = {};
-        for(property_name in collection){
-            property = collection[property_name];
-            collection_result[property_name] = scrape_css(property['css'], property['re']);
+    show_html = function(){
+        var dom = {}
+        for(collection_name in config_css){
+            collection = config_css[collection_name];
+            var collection_result = {};
+            for(property_name in collection){
+                property = collection[property_name];
+                collection_result[property_name] = scrape_css(property['css'], property['re']);
+            }
+            dom[collection_name] = format_collection(collection_result);
         }
-        dom[collection_name] = format_collection(collection_result);
+        return dom;
+    };
+
+    show_config = function(){
+        return config_css;
     }
-    return dom;
+
+    return {show_html: show_html, show_config: show_config}
 }

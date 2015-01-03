@@ -1,5 +1,11 @@
 var tpl = {
     top_control_panel: ' \
+        <div id="apollo-top-panel"> \
+            <ul class="apollo-nav" id="apollo-nav"></li><li><a href="#" id="apollo-set">设置</li><li><a href="#" id="apollo-preview">预览</a><li><a href="#" id="apollo-edit-config">编辑config</a></li></ul> \
+            <div id="apollo-display"></div> \
+        </div> \
+        <div id="apollo-content-container" style="display:none"><pre></pre></div>',
+    top_control_panel_phone_app_demo: ' \
         <div id="apollo"> \
             <div> \
                 <div ng-controller="PhoneListCtrl"> \
