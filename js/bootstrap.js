@@ -2,17 +2,19 @@
     var html = tpl.top_control_panel;
     $('body').css('padding-top', '50px');
     $('body').append(html);
-    // alert(JSON.stringify(config()));
-    angular.bootstrap(document,["phonecatApp"]);
+
+    alert(JSON.stringify(config()));
+    
+    // start angular
+    angular.bootstrap(document,["phonecatApp"]); 
+
+    // element picker start
     var lastelem;
     var bg_color;
-    
-
     document.onmouseover = function (e) {
         var event = e || window.event;
         var target = event.target || event.srcElement;
         document.getElementById('display').innerHTML = page_util.csspath_with_id(target);
-
         if (lastelem) {
             lastelem.style.background = bg_color;
         }

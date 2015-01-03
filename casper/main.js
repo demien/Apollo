@@ -22,6 +22,7 @@ var service = server.listen(ip_server, function(request, response) {
         var html = this.getHTML();
         html += '<link rel="stylesheet" href="http://localhost/css/load.css" type="text/css" >';
         html += '<script type="text/javascript" src="http://localhost/js/apollo_defer.js"></script>';
+        response.setEncoding('UTF-8');
         response.statusCode = 200;
         response.write(html);
         response.close();
