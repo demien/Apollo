@@ -1,28 +1,40 @@
 (function(){
     var html = tpl.top_control_panel;
-    $('body').css('padding-top', '50px');
+    $('body').css('padding-top', '60px');
     $('body').append(html);
 
     // start angular
-    angular.bootstrap(document,["phonecatApp"]); 
+    angular.bootstrap(document,["Apollo"]);
 
     // element picker start
-    var lastelem;
+    var last_em;
     var bg_color;
     var picker_model = true;
-    document.onmouseover = function (e) {
+
+    // remove a event
+    $('a').removeAttr('href');
+    $('a').removeAttr('onClick');
+
+    apollo = angular.element($('#apollo-display')).scope();
+
+    document.onmouseover = function (e){
         var event = e || window.event;
         var target = event.target || event.srcElement;
+        $('#apollo-display').html(page_util.csspath_with_id(target));
+        if (last_em) {
+            $(last_em).removeClass('apollo-hover');
+            $(last_em).removeAttr('utc14href');
+            $(last_em).unbind('click');
+        }
         if (!picker_model || target.id.startWith('apollo')){
             return;
         }
-        document.getElementById('apollo-display').innerHTML = page_util.csspath_with_id(target);
-        if (lastelem) {
-            lastelem.style.background = bg_color;
-        }
-        bg_color = target.style.background;
-        target.style.background = "#FF9933";
-        lastelem = target;
+        $(target).attr('utc14href', '');
+        $(target).addClass('apollo-hover');
+        $(target).click(function(){
+            apollo.add_property(page_util.csspath_with_id(target));
+        });
+        last_em = target;
     };
 
     // nav event combine
@@ -67,5 +79,6 @@
             return false;
         return true;
     };
+
 
 })();

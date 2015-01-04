@@ -1,12 +1,6 @@
 var config = function(){
-    var config_css = {
-        'shop_list': {
-            'name': {
-                'css': 'div > div > div > a > span',
-                're': '.*',
-            },
-        },
-    }
+
+    var config_css = angular.element($('#apollo-display')).scope().config;
 
     scrape_css = function(css, re){
         var elements = $.find(css);

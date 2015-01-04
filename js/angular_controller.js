@@ -1,8 +1,13 @@
-var phonecatApp = angular.module('phonecatApp', []);
-phonecatApp.controller('PhoneListCtrl', function ($scope) {
-    $scope.phones = [
-        {'name': 'Nexus S', 'snippet': 'Fast just got faster with Nexus S.'},
-        {'name': 'Motorola with Wi-Fi', 'snippet': 'The Next, Next Generation tablet.'},
-        {'name': 'MOTOROLA ', 'snippet': 'The Next, Next Generation tablet.'}
-    ];
+var Apollo = angular.module('Apollo', []);
+
+Apollo.controller('apollo-config', function ($scope) {
+    $scope.config = {'collection': {}};
+    $scope.property_cnt = 1;
+    $scope.collection_cnt = 1;
+
+    $scope.add_property = function(css){
+        property = {'css': css, 're': '.*'};
+        $scope.config.collection['property'+ $scope.property_cnt] = property;
+        $scope.property_cnt += 1;
+    }
 });

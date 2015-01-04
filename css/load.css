@@ -41,3 +41,8 @@
     font-weight: bold;
     overflow: scroll;
 }
+
+.apollo-hover {
+    background: #FF9933;
+    cursor: hand;
+}
