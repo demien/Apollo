@@ -4,7 +4,7 @@
     $('body').append(html);
 
     // start angular
-    angular.bootstrap(document,["Apollo"]);
+    angular.bootstrap(document,["Apollo"]);    
 
     // element picker start
     var last_em;
@@ -16,6 +16,7 @@
     $('a').removeAttr('onClick');
 
     apollo = angular.element($('#apollo-display')).scope();
+    console.log(apollo);
 
     document.onmouseover = function (e){
         var event = e || window.event;
@@ -33,6 +34,7 @@
         $(target).addClass('apollo-hover');
         $(target).click(function(){
             apollo.add_property(page_util.csspath_with_id(target));
+            apollo.$digest();
         });
         last_em = target;
     };
@@ -43,7 +45,6 @@
         content_container = show_container()
         pre = $('pre').html(JSON.stringify(config().show_html(), null, 4));
         content_container.append(pre);
-        console.log('preview');
     });
 
     $('#apollo-set').click(function(e) {
