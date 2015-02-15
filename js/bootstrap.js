@@ -21,19 +21,21 @@
     document.onmouseover = function (e){
         var event = e || window.event;
         var target = event.target || event.srcElement;
-        $('#apollo-display').html(page_util.csspath_with_id(target));
+        var csspath = page_util.csspath_standard(target);
         if (last_em) {
             $(last_em).removeClass('apollo-hover');
             $(last_em).removeAttr('utc14href');
+            csspath = page_util.csspath_standard(target);
             $(last_em).unbind('click');
         }
+        $('#apollo-display').html(csspath);
         if (!picker_model || target.id.startWith('apollo')){
             return;
         }
         $(target).attr('utc14href', '');
         $(target).addClass('apollo-hover');
         $(target).click(function(){
-            apollo.add_property(page_util.csspath_with_id(target));
+            apollo.add_property(csspath);
             apollo.$digest();
         });
         last_em = target;
