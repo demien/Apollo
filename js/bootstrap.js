@@ -9,54 +9,45 @@
     // element picker start
     var last_em;
     var bg_color;
-    var picker_model = true;
 
     // remove a event
     $('a').removeAttr('href');
     $('a').removeAttr('onClick');
 
     apollo = angular.element($('#apollo-display')).scope();
-    console.log(apollo);
 
-    document.onmouseover = function (e){
+    document.onmouseover = function(e){
         var event = e || window.event;
         var target = event.target || event.srcElement;
+        $('.apollo-hover').each(function(index, el){
+            $(el).removeClass('apollo-hover');
+            $(el).unbind('click');
+        });
         var csspath = page_util.csspath_standard(target);
-        if (last_em) {
-            $(last_em).removeClass('apollo-hover');
-            $(last_em).removeAttr('utc14href');
-            csspath = page_util.csspath_standard(target);
-            $(last_em).unbind('click');
-        }
-        $('#apollo-display').html(csspath);
-        if (!picker_model || target.id.startWith('apollo')){
+        if (in_apollo_container(target)){
             return;
         }
-        $(target).attr('utc14href', '');
-        $(target).addClass('apollo-hover');
+        $('#apollo-display').html(csspath);
+        $(csspath).each(function(index, el){$(el).addClass('apollo-hover')});
         $(target).click(function(){
             apollo.add_property(csspath);
             apollo.$digest();
         });
-        last_em = target;
     };
 
     // nav event combine
     $('#apollo-preview').click(function(e) {
-        picker_model = false;
         content_container = show_container()
         pre = $('pre').html(JSON.stringify(config().show_html(), null, 4));
         content_container.append(pre);
     });
 
     $('#apollo-set').click(function(e) {
-        picker_model = true;
         content_container = $('#apollo-content-container');
         content_container.fadeOut("fast");
     });
 
     $('#apollo-edit-config').click(function(e) {
-        picker_model = false;
         content_container = show_container()
         pre = $('pre').html(JSON.stringify(config().show_config(), null, 4));
         content_container.append(pre);
@@ -73,6 +64,17 @@
         return content_container
     }
 
+    in_apollo_container = function(el){
+        var containers = ['apollo-top-panel', 'apollo-content-container']
+        while (el.parentNode){
+            if(containers.indexOf(el.id) >= 0){
+                return true;
+            }
+            el=el.parentNode;
+        }
+        return false;
+    };
+
     String.prototype.startWith = function(s){
         if(s==null||s==""||this.length==0||s.length>this.length)
             return false;
@@ -82,6 +84,5 @@
             return false;
         return true;
     };
-
 
 })();
